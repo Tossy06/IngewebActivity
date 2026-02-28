@@ -1,51 +1,42 @@
 import { DB } from "../services/db.js";
 
+const USERS_KEY = "usersData";
 const INVENTARY_KEY = "inventaryData";
+const LOW_STOCK_LIMIT = 5;
 
-// Usuarios
-document.getElementById("totalUsers").textContent = DB.users.length;
+// ================= USUARIOS =================
+const users =
+  JSON.parse(localStorage.getItem(USERS_KEY)) || DB.users;
+
+document.getElementById("totalUsers").textContent = users.length;
 
 const getUsersByRole = (users, role) =>
   users.filter(user => user.role === role).length;
 
 document.getElementById("totalAdmins").textContent =
-  getUsersByRole(DB.users, "Administrador");
+  getUsersByRole(users, "Administrador");
 
 document.getElementById("totalEmployees").textContent =
-  getUsersByRole(DB.users, "Empleado");
+  getUsersByRole(users, "Empleado");
 
-// Inventario (desde localStorage)
+// ================= INVENTARIO =================
 const inventary =
   JSON.parse(localStorage.getItem(INVENTARY_KEY)) || DB.inventary;
 
 document.getElementById("totalProducts").textContent = inventary.length;
 
 // Stock total
-const totalStock = inventary.reduce(
-  (acc, item) => acc + item.stock,
-  0
-);
-document.getElementById("totalStock").textContent = totalStock;
+document.getElementById("totalStock").textContent =
+  inventary.reduce((acc, item) => acc + item.stock, 0);
 
-// Entradas
-const totalEntries = inventary.reduce(
-  (acc, item) => acc + item.entradas,
-  0
-);
-document.getElementById("totalEntries").textContent = totalEntries;
+// Entradas totales
+document.getElementById("totalEntries").textContent =
+  inventary.reduce((acc, item) => acc + item.entradas, 0);
 
-// Salidas
-const totalOutputs = inventary.reduce(
-  (acc, item) => acc + item.salidas,
-  0
-);
-document.getElementById("totalOutputs").textContent = totalOutputs;
+// Salidas totales
+document.getElementById("totalOutputs").textContent =
+  inventary.reduce((acc, item) => acc + item.salidas, 0);
 
-// Stock bajo
-const LOW_STOCK_LIMIT = 5;
-
-const lowStockProducts = inventary.filter(
-  item => item.stock <= LOW_STOCK_LIMIT
-).length;
-
-document.getElementById("lowStockProducts").textContent = lowStockProducts;
+// Productos con stock bajo
+document.getElementById("lowStockProducts").textContent =
+  inventary.filter(item => item.stock <= LOW_STOCK_LIMIT).length;
