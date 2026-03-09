@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Personal - David Santiago Gómez</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header con información personal -->
+    <header>
+        <h1>David Santiago Gómez</h1>
+        <p>Estudiante de Ingeniería de Software • Desarrollador Full Stack</p>
+    </header>
+
+    <!-- Sección: Sobre mí -->
+    <section>
+        <h2>Sobre mí</h2>
+        <p>Soy estudiante de ingeniería de software desde 2023, actualmente cursando 6to semestre. Tengo 20 años y soy promoción 2022. Trabajo como desarrollador Full Stack, aunque confieso que me inclino más por el backend que por el frontend.</p>
+        <p>Mi pasión va más allá del desarrollo web. Aspiro a explorar las ramas científicas de la inteligencia artificial para comprenderla a fondo y contribuir a su evolución. El desarrollo web es solo el punto de partida de un camino mucho más amplio.</p>
+    </section>
+
+    <!-- Sección: Reflexión sobre especificidad CSS -->
+    <section>
+        <h2>La Importancia de la Especificidad en CSS</h2>
+        <p>Durante este proyecto comprendí que la especificidad en CSS no es solo un concepto técnico, sino una herramienta fundamental para escribir código mantenible y escalable. Al trabajar únicamente con selectores de tipo y pseudo-clases, sin clases ni IDs, me di cuenta de que entender cómo el navegador prioriza los estilos es crucial para evitar conflictos y sobrescrituras innecesarias.</p>
+        <p>La especificidad nos obliga a pensar estratégicamente sobre la estructura del HTML y cómo aplicamos los estilos. Es la diferencia entre un CSS ordenado y predecible, versus uno caótico lleno de !important. En proyectos grandes, este conocimiento se vuelve invaluable.</p>
+    </section>
+
+    <!-- Sección: Selectores que más costaron -->
+    <section>
+        <h2>Selectores Avanzados: Mi Proceso de Aprendizaje</h2>
+        <p>Estos fueron los selectores que más me desafiaron durante el proyecto:</p>
+        
+        <ol>
+            <li>
+                <strong>Pseudo-elementos ::before y ::after</strong>
+                <p>Al principio no entendía la diferencia entre pseudo-clases y pseudo-elementos. Me costó comprender que ::before y ::after crean contenido virtual en el DOM sin modificar el HTML. La sintaxis de dos puntos también fue confusa hasta que investigué que es la forma moderna de diferenciarlos.</p>
+            </li>
+            <li>
+                <strong>:nth-child() vs :nth-of-type()</strong>
+                <p>Distinguir entre estos dos selectores fue un reto. :nth-child() cuenta todos los hermanos sin importar el tipo, mientras que :nth-of-type() solo cuenta elementos del mismo tipo. Esta sutil diferencia puede generar resultados inesperados si no se comprende bien.</p>
+            </li>
+            <li>
+                <strong>Combinador de hijo directo (>)</strong>
+                <p>Inicialmente no veía la utilidad de este selector, pero al trabajar en estructuras HTML anidadas entendí su poder. Permite apuntar específicamente a hijos directos sin afectar nietos u otros descendientes, lo que da mucho más control sobre la aplicación de estilos.</p>
+            </li>
+        </ol>
+    </section>
+
+    <!-- Sección: Mobile-First -->
+    <section>
+        <h2>Mobile-First: Una Metodología Inteligente</h2>
+        <p>Mobile-First no es solo escribir código para móviles primero, es una filosofía de diseño que prioriza la experiencia en dispositivos con recursos limitados. La lógica es simple pero poderosa: si tu sitio funciona bien en una pantalla pequeña, escalarlo a una grande es mucho más sencillo que el proceso inverso.</p>
+        <p>En nuestro proyecto del perfil, aplicamos Mobile-First comenzando con un diseño apilado verticalmente, donde todos los elementos se organizan en una sola columna. Este enfoque nos obligó a identificar qué información es realmente esencial y cómo presentarla de manera clara con espacio limitado.</p>
+        <p>Los beneficios son claros: mejor rendimiento en móviles (que son la mayoría de dispositivos hoy en día), código CSS más limpio y progresivo, y una mentalidad de "contenido primero" que mejora la experiencia de usuario en todos los dispositivos. Al usar media queries con min-width, vamos agregando complejidad solo cuando hay espacio disponible, no restándola cuando se reduce.</p>
+        <p>Esta metodología me enseñó a pensar en escalabilidad desde el principio, un principio que aplica no solo al frontend sino a la ingeniería de software en general.</p>
+    </section>
+
+    <!-- Galería de imágenes con hover -->
+    <section>
+        <h2>Galería de Proyecto</h2>
+        <div>
+            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=300&fit=crop" alt="Código de programación">
+            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=300&fit=crop" alt="Desarrollo Backend">
+            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=300&fit=crop" alt="Inteligencia Artificial">
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>David Santiago Gómez - Promoción 2022 - 6to Semestre</p>
+        <p>Desarrollador Full Stack • Futuro Científico de IA</p>
+    </footer>
+
+</body>
+</html>

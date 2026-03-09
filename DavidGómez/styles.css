@@ -1,0 +1,283 @@
+/* BLOG PERSONAL - DAVID SANTIAGO GÓMEZ
+   Solo selectores de tipo y pseudo-clases (sin clases ni IDs)
+   Paleta: #D8E9E7 (menta claro), #A7C5C1 (verde agua), #7A9B98 (gris verdoso), #4D6A6D (gris oscuro), #1F2527 (negro azulado) */
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #D8E9E7;
+    color: #1F2527;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Header del blog */
+header {
+    background: linear-gradient(135deg, #1F2527 0%, #4D6A6D 100%);
+    color: #D8E9E7;
+    padding: 60px 30px;
+    text-align: center;
+    border-radius: 12px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 20px rgba(31, 37, 39, 0.2);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+/* Pseudo-elemento ::before en el h1 del header */
+header h1::before {
+    content: "👨‍💻 ";
+    font-size: 2rem;
+}
+
+header p {
+    font-size: 1.1rem;
+    color: #A7C5C1;
+    font-weight: 500;
+}
+
+/* Secciones del blog */
+section {
+    background-color: white;
+    padding: 40px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    border-left: 5px solid #7A9B98;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Pseudo-clase :first-of-type para la primera sección */
+section:first-of-type {
+    border-left-color: #4D6A6D;
+}
+
+/* Pseudo-clase :nth-of-type para alternar colores de borde */
+section:nth-of-type(2) {
+    border-left-color: #7A9B98;
+}
+
+section:nth-of-type(3) {
+    border-left-color: #1F2527;
+}
+
+section:nth-of-type(4) {
+    border-left-color: #A7C5C1;
+}
+
+section:nth-of-type(5) {
+    border-left-color: #4D6A6D;
+}
+
+/* Títulos h2 dentro de section */
+section h2 {
+    color: #1F2527;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #A7C5C1;
+}
+
+/* Pseudo-elemento ::after en h2 */
+section h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: #4D6A6D;
+    margin-top: 10px;
+    border-radius: 2px;
+}
+
+/* Párrafos dentro de section */
+section p {
+    color: #4D6A6D;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+/* Pseudo-elemento ::first-letter para la primera letra de cada párrafo */
+section p::first-letter {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #7A9B98;
+    float: left;
+    margin-right: 5px;
+    line-height: 1;
+}
+
+/* Listas ordenadas */
+ol {
+    margin: 20px 0;
+    padding-left: 0;
+    list-style-position: inside;
+}
+
+ol li {
+    background-color: #D8E9E7;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #7A9B98;
+}
+
+/* Pseudo-clase :hover en items de lista */
+ol li:hover {
+    background-color: #A7C5C1;
+    border-left-color: #4D6A6D;
+    transform: translateX(5px);
+    transition: all 0.3s ease;
+}
+
+/* Pseudo-clase :nth-child en items de lista */
+ol li:nth-child(1) {
+    border-left-color: #4D6A6D;
+}
+
+ol li:nth-child(2) {
+    border-left-color: #7A9B98;
+}
+
+ol li:nth-child(3) {
+    border-left-color: #1F2527;
+}
+
+/* Strong dentro de li */
+ol li strong {
+    color: #1F2527;
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* Párrafos dentro de li */
+ol li p {
+    color: #4D6A6D;
+    font-size: 0.95rem;
+    margin: 0;
+    padding-left: 0;
+}
+
+ol li p::first-letter {
+    font-size: 1rem;
+    float: none;
+    margin-right: 0;
+}
+
+/* Galería de imágenes - Contenedor div dentro de section */
+section div {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+/* Imágenes dentro del div */
+section div img {
+    width: 280px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(31, 37, 39, 0.15);
+    transition: all 0.4s ease;
+    border: 3px solid #A7C5C1;
+}
+
+/* Pseudo-clase :hover en imágenes - CAMBIO DE TAMAÑO */
+section div img:hover {
+    transform: scale(1.15);
+    box-shadow: 0 8px 25px rgba(77, 106, 109, 0.4);
+    border-color: #4D6A6D;
+    z-index: 10;
+}
+
+/* Pseudo-clase :nth-child para diferentes efectos en cada imagen */
+section div img:nth-child(1):hover {
+    rotate: -3deg;
+}
+
+section div img:nth-child(2):hover {
+    rotate: 0deg;
+}
+
+section div img:nth-child(3):hover {
+    rotate: 3deg;
+}
+
+/* Footer */
+footer {
+    background-color: #1F2527;
+    color: #D8E9E7;
+    text-align: center;
+    padding: 30px;
+    border-radius: 10px;
+    margin-top: 40px;
+}
+
+footer p {
+    margin: 5px 0;
+    color: #A7C5C1;
+}
+
+/* Pseudo-clase :first-child en párrafos del footer */
+footer p:first-child {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #D8E9E7;
+}
+
+/* Pseudo-elemento ::before en el segundo párrafo del footer */
+footer p:nth-child(2)::before {
+    content: "🚀 ";
+}
+
+/* RESPONSIVE - Mobile-First */
+@media (min-width: 768px) {
+    body {
+        padding: 40px;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    header {
+        padding: 80px 50px;
+    }
+
+    header h1 {
+        font-size: 3rem;
+    }
+
+    section {
+        padding: 50px;
+    }
+
+    section h2 {
+        font-size: 2.2rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    body {
+        max-width: 1200px;
+    }
+
+    section div {
+        gap: 30px;
+    }
+
+    section div img {
+        width: 320px;
+        height: 220px;
+    }
+}
