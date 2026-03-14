@@ -4,10 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Reloj que Devora el Tiempo</title>
-    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Fondo animado de engranajes -->
@@ -60,842 +70,856 @@
         <div class="particle"></div>
     </div>
 
-    <!-- Header -->
-    <header class="main-header">
-        <div class="clock-icon">
-            <div class="clock-face">
-                <div class="clock-center"></div>
-                <div class="clock-numbers">
-                    <span class="num num-12">12</span>
-                    <span class="num num-1">1</span>
-                    <span class="num num-2">2</span>
-                    <span class="num num-3">3</span>
-                    <span class="num num-4">4</span>
-                    <span class="num num-5">5</span>
-                    <span class="num num-6">6</span>
-                    <span class="num num-7">7</span>
-                    <span class="num num-8">8</span>
-                    <span class="num num-9">9</span>
-                    <span class="num num-10">10</span>
-                    <span class="num num-11">11</span>
-                </div>
-                <div class="hour-hand" id="hourHand"></div>
-                <div class="minute-hand" id="minuteHand"></div>
-                <div class="second-hand" id="secondHand"></div>
-            </div>
-        </div>
-        <h1 class="main-title">El Reloj que Devora el Tiempo</h1>
-        <p class="subtitle">En un mundo donde el tiempo está vivo… y tiene hambre.</p>
-        <div class="synopsis">
-            <p>En un mundo oscuro y silencioso, el tiempo no es una medida… es una criatura. Un enorme reloj viviente se alimenta de los recuerdos, los sueños y la vida de las personas. Una niña llamada Luma descubre que el tiempo está muriendo… y que si el reloj se detiene, todo desaparecerá.</p>
-            <p class="synopsis-final">Pero destruirlo también puede significar el fin del mundo.</p>
-        </div>
-    </header>
-
     <!-- Control de sonido ambiente -->
     <div class="sound-control">
-        <button id="soundToggle" class="sound-btn" aria-label="Reproducir sonido ambiente">
-            <span class="sound-icon">🔊</span>
+        <button id="soundToggle" class="btn btn-sound" aria-label="Control de sonido">
+            <i class="bi bi-volume-up-fill"></i>
         </button>
-        <audio id="ambientSound" loop preload="auto">
-            <source src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3" type="audio/mpeg">
-        </audio>
     </div>
 
     <!-- Mensaje inicial para activar audio -->
-    <div class="audio-prompt" id="audioPrompt">
-        <div class="audio-prompt-content">
-            <h3>🔊 Experiencia Completa</h3>
-            <p>Esta historia incluye sonidos ambientales. ¿Deseas activar el audio?</p>
-            <button id="enableAudio" class="reveal-btn">
-                <span class="btn-icon">🎵</span>
-                Sí, activar sonido
-            </button>
-            <button id="disableAudio" class="reveal-btn">
-                <span class="btn-icon">🔇</span>
-                No, continuar en silencio
-            </button>
+    <div class="modal fade" id="audioModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content audio-modal-content">
+                <div class="modal-header border-0">
+                    <h3 class="modal-title w-100 text-center">
+                        <i class="bi bi-music-note-beamed"></i> Experiencia Completa
+                    </h3>
+                </div>
+                <div class="modal-body text-center">
+                    <p class="lead">Esta historia incluye sonidos ambientales.<br>¿Deseas activar el audio?</p>
+                </div>
+                <div class="modal-footer border-0 justify-content-center">
+                    <button type="button" class="btn btn-audio-enable" id="enableAudio">
+                        <i class="bi bi-music-note"></i> Sí, activar sonido
+                    </button>
+                    <button type="button" class="btn btn-audio-disable" id="disableAudio">
+                        <i class="bi bi-volume-mute"></i> No, continuar en silencio
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="clock-icon text-center mb-4">
+                        <div class="clock-face">
+                            <div class="clock-center"></div>
+                            <div class="clock-numbers">
+                                <span class="num num-12">12</span>
+                                <span class="num num-3">3</span>
+                                <span class="num num-6">6</span>
+                                <span class="num num-9">9</span>
+                            </div>
+                            <div class="hour-hand" id="hourHand"></div>
+                            <div class="minute-hand" id="minuteHand"></div>
+                            <div class="second-hand" id="secondHand"></div>
+                        </div>
+                    </div>
+                    
+                    <h1 class="main-title text-center">El Reloj que Devora el Tiempo</h1>
+                    <p class="subtitle text-center">En un mundo donde el tiempo está vivo… y tiene hambre.</p>
+                    
+                    <div class="synopsis">
+                        <p>En un mundo oscuro y silencioso, el tiempo no es una medida… es una criatura. Un enorme reloj viviente se alimenta de los recuerdos, los sueños y la vida de las personas. Una niña llamada Luma descubre que el tiempo está muriendo… y que si el reloj se detiene, todo desaparecerá.</p>
+                        <p class="synopsis-final">Pero destruirlo también puede significar el fin del mundo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
     <!-- Navegación de capítulos -->
-    <nav class="chapter-nav">
-        <button class="nav-btn" data-chapter="inicio">El Mundo Sin Mañana</button>
-        <button class="nav-btn" data-chapter="desarrollo">El Corazón del Tiempo</button>
-        <button class="nav-btn" data-chapter="desenlace">El Último Segundo</button>
+    <nav class="chapter-nav sticky-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <ul class="nav nav-pills justify-content-center" id="chapterNav">
+                        <li class="nav-item">
+                            <button class="nav-link active" data-chapter="cap1">
+                                <i class="bi bi-1-circle"></i> El Despertar
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" data-chapter="cap2">
+                                <i class="bi bi-2-circle"></i> El Descubrimiento
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" data-chapter="cap3">
+                                <i class="bi bi-3-circle"></i> La Torre
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" data-chapter="cap4">
+                                <i class="bi bi-4-circle"></i> El Corazón
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" data-chapter="cap5">
+                                <i class="bi bi-5-circle"></i> La Decisión
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" data-chapter="cap6">
+                                <i class="bi bi-6-circle"></i> El Final
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </nav>
 
-    <!-- Sección: Inicio -->
-    <section id="inicio" class="story-section active">
-        <article class="story-content">
-            <h2 class="chapter-title">El Mundo Sin Mañana</h2>
-            
-            <div class="text-block">
-                <p>El mundo de Luma está lleno de relojes rotos. Las ciudades están congeladas en momentos que nunca terminan.</p>
-                <p class="emphasis">Las personas ya no envejecen… pero tampoco viven.</p>
-            </div>
+    <!-- Indicador de progreso -->
+    <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progressBar"></div>
+    </div>
 
-            <div class="image-container reveal">
-                <img src="https://images.unsplash.com/photo-1501630834273-4b5604d2ee31?w=800" alt="Ciudad oscura cubierta de neblina con relojes">
-                <div class="image-caption">Una ciudad atrapada en el tiempo</div>
-            </div>
+    <!-- CAPÍTULO 1: El Despertar -->
+    <section id="cap1" class="story-section active">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <article class="story-content">
+                        <h2 class="chapter-title">
+                            <span class="chapter-number">Capítulo I</span>
+                            El Despertar
+                        </h2>
+                        
+                        <div class="text-block">
+                            <p class="lead">El mundo de Luma está lleno de relojes rotos.</p>
+                            <p>Las ciudades están congeladas en momentos que nunca terminan. Los edificios permanecen en penumbra eterna, con ventanas que reflejan un cielo sin estrellas.</p>
+                            <p class="emphasis">Las personas ya no envejecen… pero tampoco viven.</p>
+                        </div>
 
-            <div class="text-block">
-                <p>Los relojes comenzaron a aparecer por todas partes. En las paredes, enterrados bajo la tierra, colgando de árboles muertos. Pero nadie recordaba haberlos construido.</p>
-            </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="image-container reveal">
+                                    <img src="https://images.unsplash.com/photo-1501630834273-4b5604d2ee31?w=1200" 
+                                         class="img-fluid rounded" 
+                                         alt="Ciudad oscura cubierta de neblina con relojes">
+                                    <div class="image-caption">Una ciudad atrapada en el tiempo</div>
+                                </div>
+                            </div>
+                        </div>
 
-            <div class="image-container reveal">
-                <img src="https://images.unsplash.com/photo-1509048191080-d2984bad6ae5?w=800" alt="Relojes antiguos y misteriosos">
-                <div class="image-caption">Relojes que nadie construyó</div>
-            </div>
+                        <div class="text-block">
+                            <p>Caminan sin rumbo, con miradas vacías, repitiendo los mismos gestos una y otra vez. Como marionetas sin titiritero.</p>
+                            <p>Los relojes comenzaron a aparecer por todas partes. En las paredes, enterrados bajo la tierra, colgando de árboles muertos. Pero nadie recordaba haberlos construido.</p>
+                        </div>
 
-            <div class="character-card">
-                <h3 class="character-title">LUMA</h3>
-                <p>Una niña pequeña con un abrigo amarillo y una linterna antigua. Tiene la habilidad de escuchar el tiempo dentro de los objetos.</p>
-                <div class="css-lantern">
-                    <div class="lantern-top"></div>
-                    <div class="lantern-body">
-                        <div class="lantern-light"></div>
-                        <div class="light-beam"></div>
-                    </div>
-                    <div class="lantern-bottom"></div>
-                    <div class="lantern-handle"></div>
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <div class="info-card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <i class="bi bi-clock-history"></i> Los Relojes Misteriosos
+                                        </h5>
+                                        <ul class="list-unstyled">
+                                            <li><i class="bi bi-check-circle"></i> Aparecen sin explicación</li>
+                                            <li><i class="bi bi-check-circle"></i> Están detenidos en diferentes horas</li>
+                                            <li><i class="bi bi-check-circle"></i> Nadie puede destruirlos</li>
+                                            <li><i class="bi bi-check-circle"></i> Emiten un débil sonido</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="image-container reveal">
+                                    <img src="https://images.unsplash.com/photo-1509048191080-d2984bad6ae5?w=600" 
+                                         class="img-fluid rounded" 
+                                         alt="Relojes antiguos y misteriosos">
+                                    <div class="image-caption">Relojes que nadie construyó</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="next-chapter-btn text-center mt-5">
+                            <button class="btn btn-next" data-next="cap2">
+                                Continuar la historia <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </article>
                 </div>
             </div>
-
-            <div class="image-container reveal">
-                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800" alt="Niña con linterna en la oscuridad">
-                <div class="image-caption">Luma y su linterna en la oscuridad eterna</div>
-            </div>
-
-            <div class="text-block">
-                <p>En medio de ese mundo vivía <strong class="character-name">Luma</strong>, caminando por calles vacías con su pequeña linterna. Desde pequeña había notado algo extraño: podía escuchar el tiempo dentro de los objetos. Cuando tocaba un reloj, escuchaba susurros, recuerdos y momentos perdidos.</p>
-            </div>
-
-            <div class="interactive-box">
-                <button class="reveal-btn" data-target="time-whispers">
-                    <span class="btn-icon">👂</span>
-                    Escuchar los susurros del tiempo
-                </button>
-                <div id="time-whispers" class="hidden-content">
-                    <p class="whisper-text">"Recuérdame... no me olvides... el tiempo se desvanece..."</p>
-                    <audio autoplay loop class="story-audio" preload="auto">
-                        <source src="https://assets.mixkit.co/active_storage/sfx/2457/2457-preview.mp3" type="audio/mpeg">
-                    </audio>
-                </div>
-            </div>
-
-            <div class="text-block final-paragraph">
-                <p>Una noche, mientras caminaba entre casas abandonadas, escuchó un sonido diferente a todos los demás.</p>
-                <p class="emphasis">Un sonido profundo.</p>
-                <div class="tick-tock">
-                    <p>tic…</p>
-                    <p>tac…</p>
-                    <p>tic…</p>
-                    <p>tac…</p>
-                </div>
-                <p class="dramatic-text">Algo estaba despertando.</p>
-            </div>
-
-            <div class="interactive-box">
-                <button class="reveal-btn" data-target="clock-sound">
-                    <span class="btn-icon">🔊</span>
-                    Activar sonido del reloj
-                </button>
-                <div id="clock-sound" class="hidden-content">
-                    <p class="warning-text">El sonido del reloj antiguo resuena en la oscuridad...</p>
-                    <audio autoplay loop class="story-audio" preload="auto">
-                        <source src="https://assets.mixkit.co/active_storage/sfx/2567/2567-preview.mp3" type="audio/mpeg">
-                    </audio>
-                </div>
-            </div>
-        </article>
+        </div>
     </section>
 
-    <!-- Sección: Desarrollo -->
-    <section id="desarrollo" class="story-section">
-        <article class="story-content">
-            <h2 class="chapter-title">El Corazón del Tiempo</h2>
-            
-            <div class="text-block">
-                <p>Luma desciende a una torre subterránea. Las escaleras parecen no tener fin. Con cada paso, el sonido del reloj se hace más fuerte.</p>
-                <p class="emphasis">tic... tac... tic... tac...</p>
-            </div>
+    <!-- CAPÍTULO 2: El Descubrimiento -->
+    <section id="cap2" class="story-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <article class="story-content">
+                        <h2 class="chapter-title">
+                            <span class="chapter-number">Capítulo II</span>
+                            El Descubrimiento
+                        </h2>
 
-            <!-- SVG Torre Misteriosa -->
-            <svg class="tower-svg" viewBox="0 0 600 800" xmlns="http://www.w3.org/2000/svg">
-                <!-- Fondo con niebla -->
-                <defs>
-                    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" style="stop-color:#0a0a0f;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#1a1a2e;stop-opacity:1" />
-                    </linearGradient>
-                    <radialGradient id="fogGradient" cx="50%" cy="50%">
-                        <stop offset="0%" style="stop-color:#2e3445;stop-opacity:0.3" />
-                        <stop offset="100%" style="stop-color:#0f0f14;stop-opacity:0" />
-                    </radialGradient>
-                    <filter id="glow">
-                        <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-                        <feMerge>
-                            <feMergeNode in="coloredBlur"/>
-                            <feMergeNode in="SourceGraphic"/>
-                        </feMerge>
-                    </filter>
-                </defs>
-                
-                <!-- Cielo -->
-                <rect width="600" height="800" fill="url(#skyGradient)"/>
-                
-                <!-- Luna -->
-                <circle cx="480" cy="120" r="50" fill="#e0b34a" opacity="0.6">
-                    <animate attributeName="opacity" values="0.5;0.7;0.5" dur="4s" repeatCount="indefinite"/>
-                </circle>
-                
-                <!-- Niebla animada -->
-                <ellipse cx="200" cy="700" rx="150" ry="80" fill="url(#fogGradient)">
-                    <animate attributeName="cx" values="200;250;200" dur="8s" repeatCount="indefinite"/>
-                    <animate attributeName="opacity" values="0.3;0.6;0.3" dur="8s" repeatCount="indefinite"/>
-                </ellipse>
-                <ellipse cx="400" cy="720" rx="180" ry="90" fill="url(#fogGradient)">
-                    <animate attributeName="cx" values="400;350;400" dur="10s" repeatCount="indefinite"/>
-                    <animate attributeName="opacity" values="0.4;0.7;0.4" dur="10s" repeatCount="indefinite"/>
-                </ellipse>
-                
-                <!-- Torre principal -->
-                <g class="tower-structure">
-                    <!-- Base de la torre -->
-                    <path d="M 200 750 L 180 600 L 420 600 L 400 750 Z" 
-                          fill="#2e3445" stroke="#b87333" stroke-width="3"/>
-                    
-                    <!-- Cuerpo medio -->
-                    <path d="M 180 600 L 170 400 L 430 400 L 420 600 Z" 
-                          fill="#1f2633" stroke="#b87333" stroke-width="3"/>
-                    
-                    <!-- Cuerpo superior -->
-                    <path d="M 170 400 L 160 200 L 440 200 L 430 400 Z" 
-                          fill="#2e3445" stroke="#b87333" stroke-width="3"/>
-                    
-                    <!-- Techo puntiagudo -->
-                    <path d="M 160 200 L 300 50 L 440 200 Z" 
-                          fill="#1a1a2e" stroke="#e0b34a" stroke-width="4"/>
-                    
-                    <!-- Punta de la torre -->
-                    <path d="M 280 50 L 300 10 L 320 50 Z" 
-                          fill="#e0b34a" stroke="#e0b34a" stroke-width="2" filter="url(#glow)"/>
-                    
-                    <!-- Ventanas iluminadas -->
-                    <!-- Nivel 1 -->
-                    <rect x="230" y="500" width="40" height="60" fill="#e0b34a" opacity="0.7" rx="5">
-                        <animate attributeName="opacity" values="0.5;0.9;0.5" dur="3s" repeatCount="indefinite"/>
-                    </rect>
-                    <rect x="330" y="500" width="40" height="60" fill="#e0b34a" opacity="0.7" rx="5">
-                        <animate attributeName="opacity" values="0.5;0.9;0.5" dur="3s" repeatCount="indefinite" begin="1s"/>
-                    </rect>
-                    
-                    <!-- Nivel 2 -->
-                    <rect x="240" y="350" width="35" height="50" fill="#e0b34a" opacity="0.6" rx="5">
-                        <animate attributeName="opacity" values="0.4;0.8;0.4" dur="4s" repeatCount="indefinite" begin="0.5s"/>
-                    </rect>
-                    <rect x="325" y="350" width="35" height="50" fill="#e0b34a" opacity="0.6" rx="5">
-                        <animate attributeName="opacity" values="0.4;0.8;0.4" dur="4s" repeatCount="indefinite" begin="1.5s"/>
-                    </rect>
-                    
-                    <!-- Nivel 3 -->
-                    <rect x="250" y="220" width="30" height="40" fill="#e0b34a" opacity="0.5" rx="5">
-                        <animate attributeName="opacity" values="0.3;0.7;0.3" dur="5s" repeatCount="indefinite" begin="2s"/>
-                    </rect>
-                    <rect x="320" y="220" width="30" height="40" fill="#e0b34a" opacity="0.5" rx="5">
-                        <animate attributeName="opacity" values="0.3;0.7;0.3" dur="5s" repeatCount="indefinite"/>
-                    </rect>
-                    
-                    <!-- Detalles arquitectónicos -->
-                    <line x1="180" y1="600" x2="420" y2="600" stroke="#b87333" stroke-width="2"/>
-                    <line x1="170" y1="400" x2="430" y2="400" stroke="#b87333" stroke-width="2"/>
-                    <line x1="160" y1="200" x2="440" y2="200" stroke="#e0b34a" stroke-width="2"/>
-                    
-                    <!-- Engranajes decorativos en la fachada -->
-                    <circle cx="300" cy="300" r="25" fill="none" stroke="#b87333" stroke-width="3" opacity="0.6">
-                        <animateTransform attributeName="transform" attributeType="XML" 
-                                        type="rotate" from="0 300 300" to="360 300 300" 
-                                        dur="20s" repeatCount="indefinite"/>
-                    </circle>
-                    <circle cx="300" cy="300" r="15" fill="none" stroke="#e0b34a" stroke-width="2" opacity="0.4"/>
-                    
-                    <!-- Puerta de entrada -->
-                    <rect x="260" y="680" width="80" height="70" fill="#0a0a0f" stroke="#e0b34a" stroke-width="3" rx="5"/>
-                    <circle cx="300" cy="715" r="5" fill="#e0b34a" filter="url(#glow)">
-                        <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
-                    </circle>
-                    
-                    <!-- Grietas en la torre -->
-                    <path d="M 190 650 L 195 620 L 190 590" stroke="#1a1a2e" stroke-width="2" opacity="0.5"/>
-                    <path d="M 410 680 L 405 650 L 410 620" stroke="#1a1a2e" stroke-width="2" opacity="0.5"/>
-                    <path d="M 300 450 L 305 420 L 300 390" stroke="#1a1a2e" stroke-width="2" opacity="0.5"/>
-                </g>
-                
-                <!-- Partículas de tiempo flotando -->
-                <circle cx="150" cy="400" r="2" fill="#e0b34a" opacity="0.5">
-                    <animate attributeName="cy" values="400;200;400" dur="6s" repeatCount="indefinite"/>
-                    <animate attributeName="opacity" values="0;0.8;0" dur="6s" repeatCount="indefinite"/>
-                </circle>
-                <circle cx="450" cy="500" r="2" fill="#e0b34a" opacity="0.5">
-                    <animate attributeName="cy" values="500;300;500" dur="7s" repeatCount="indefinite"/>
-                    <animate attributeName="opacity" values="0;0.8;0" dur="7s" repeatCount="indefinite"/>
-                </circle>
-                <circle cx="250" cy="600" r="2" fill="#b87333" opacity="0.5">
-                    <animate attributeName="cy" values="600;400;600" dur="8s" repeatCount="indefinite"/>
-                    <animate attributeName="opacity" values="0;0.8;0" dur="8s" repeatCount="indefinite"/>
-                </circle>
-                <circle cx="350" cy="550" r="2" fill="#b87333" opacity="0.5">
-                    <animate attributeName="cy" values="550;350;550" dur="9s" repeatCount="indefinite"/>
-                    <animate attributeName="opacity" values="0;0.8;0" dur="9s" repeatCount="indefinite"/>
-                </circle>
-                
-                <!-- Texto atmosférico -->
-                <text x="300" y="780" text-anchor="middle" font-family="Cinzel" font-size="16" fill="#e0b34a" opacity="0.7">
-                    La torre que guarda el secreto del tiempo
-                </text>
-            </svg>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="character-card">
+                                    <div class="card-body text-center">
+                                        <div class="css-lantern mb-3">
+                                            <div class="lantern-top"></div>
+                                            <div class="lantern-body">
+                                                <div class="lantern-light"></div>
+                                                <div class="light-beam"></div>
+                                            </div>
+                                            <div class="lantern-bottom"></div>
+                                            <div class="lantern-handle"></div>
+                                        </div>
+                                        <h3 class="character-title">LUMA</h3>
+                                        <p class="small">Una niña con un abrigo amarillo y una linterna antigua. Posee la habilidad de escuchar el tiempo dentro de los objetos.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="text-block">
+                                    <p class="lead">En medio de ese mundo vivía <strong class="character-name">Luma</strong>.</p>
+                                    <p>Caminaba por calles vacías con su pequeña linterna, la única luz en un mundo de sombras. Desde pequeña había notado algo extraño: podía escuchar el tiempo dentro de los objetos.</p>
+                                    <p>Cuando tocaba un reloj, escuchaba susurros, recuerdos y momentos perdidos. Voces de personas que una vez vivieron, risas que se desvanecían, promesas olvidadas.</p>
+                                </div>
+                            </div>
+                        </div>
 
-            <div class="interactive-box scene-change">
-                <button class="reveal-btn dramatic" data-target="enter-tower" id="enterTowerBtn">
-                    <span class="btn-icon">🚪</span>
-                    Entrar en la torre
-                </button>
-                <div id="enter-tower" class="hidden-content">
-                    <p class="atmospheric-text">La oscuridad te envuelve. El aire se vuelve más denso. Los engranajes comienzan a moverse...</p>
-                    
-                    <!-- SVG Animated Gears -->
-                    <svg class="animated-gears-svg" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Gear 1 - Large -->
-                        <g class="svg-gear" transform="translate(200, 200)">
-                            <circle cx="0" cy="0" r="80" fill="#1f2633" stroke="#e0b34a" stroke-width="3"/>
-                            <circle cx="0" cy="0" r="20" fill="#e0b34a"/>
-                            <!-- Teeth -->
-                            <rect x="-8" y="-95" width="16" height="25" fill="#e0b34a" rx="3"/>
-                            <rect x="-8" y="-95" width="16" height="25" fill="#e0b34a" rx="3" transform="rotate(45)"/>
-                            <rect x="-8" y="-95" width="16" height="25" fill="#e0b34a" rx="3" transform="rotate(90)"/>
-                            <rect x="-8" y="-95" width="16" height="25" fill="#e0b34a" rx="3" transform="rotate(135)"/>
-                            <rect x="-8" y="-95" width="16" height="25" fill="#e0b34a" rx="3" transform="rotate(180)"/>
-                            <rect x="-8" y="-95" width="16" height="25" fill="#e0b34a" rx="3" transform="rotate(225)"/>
-                            <rect x="-8" y="-95" width="16" height="25" fill="#e0b34a" rx="3" transform="rotate(270)"/>
-                            <rect x="-8" y="-95" width="16" height="25" fill="#e0b34a" rx="3" transform="rotate(315)"/>
-                            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 200 200" to="360 200 200" dur="8s" repeatCount="indefinite"/>
-                        </g>
-                        
-                        <!-- Gear 2 - Medium -->
-                        <g class="svg-gear" transform="translate(500, 200)">
-                            <circle cx="0" cy="0" r="60" fill="#1f2633" stroke="#b87333" stroke-width="3"/>
-                            <circle cx="0" cy="0" r="15" fill="#b87333"/>
-                            <!-- Teeth -->
-                            <rect x="-7" y="-72" width="14" height="20" fill="#b87333" rx="3"/>
-                            <rect x="-7" y="-72" width="14" height="20" fill="#b87333" rx="3" transform="rotate(60)"/>
-                            <rect x="-7" y="-72" width="14" height="20" fill="#b87333" rx="3" transform="rotate(120)"/>
-                            <rect x="-7" y="-72" width="14" height="20" fill="#b87333" rx="3" transform="rotate(180)"/>
-                            <rect x="-7" y="-72" width="14" height="20" fill="#b87333" rx="3" transform="rotate(240)"/>
-                            <rect x="-7" y="-72" width="14" height="20" fill="#b87333" rx="3" transform="rotate(300)"/>
-                            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="360 500 200" to="0 500 200" dur="6s" repeatCount="indefinite"/>
-                        </g>
-                        
-                        <!-- Gear 3 - Small -->
-                        <g class="svg-gear" transform="translate(350, 350)">
-                            <circle cx="0" cy="0" r="45" fill="#1f2633" stroke="#e0b34a" stroke-width="2"/>
-                            <circle cx="0" cy="0" r="12" fill="#e0b34a"/>
-                            <!-- Teeth -->
-                            <rect x="-6" y="-54" width="12" height="16" fill="#e0b34a" rx="2"/>
-                            <rect x="-6" y="-54" width="12" height="16" fill="#e0b34a" rx="2" transform="rotate(90)"/>
-                            <rect x="-6" y="-54" width="12" height="16" fill="#e0b34a" rx="2" transform="rotate(180)"/>
-                            <rect x="-6" y="-54" width="12" height="16" fill="#e0b34a" rx="2" transform="rotate(270)"/>
-                            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 350 350" to="360 350 350" dur="4s" repeatCount="indefinite"/>
-                        </g>
-                        
-                        <!-- Connecting chains/belts -->
-                        <line x1="200" y1="200" x2="500" y2="200" stroke="#8a94a8" stroke-width="2" stroke-dasharray="5,5" opacity="0.3"/>
-                    </svg>
-                    
-                    <p class="video-caption">Engranajes gigantes en movimiento eterno</p>
-                    
-                    <!-- Audio ambiente de engranajes -->
-                    <audio autoplay loop class="story-audio" preload="auto">
-                        <source src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3" type="audio/mpeg">
-                    </audio>
-                </div>
-            </div>
+                        <div class="interactive-box mt-4">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Los Susurros del Tiempo</h5>
+                                    <button class="btn btn-reveal" data-bs-toggle="collapse" data-bs-target="#timeWhispers">
+                                        <i class="bi bi-ear"></i> Escuchar los susurros
+                                    </button>
+                                    <div class="collapse mt-3" id="timeWhispers">
+                                        <div class="alert alert-warning">
+                                            <p class="whisper-text mb-0">
+                                                <em>"Recuérdame... no me olvides... el tiempo se desvanece..."</em>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-            <div class="text-block">
-                <p>Dentro de la torre no había escaleras normales. Enormes engranajes giraban lentamente, moviendo plataformas de metal que descendían hacia la oscuridad.</p>
-                <p>Las paredes estaban cubiertas de relojes rotos. Algunos detenidos. Otros girando demasiado rápido.</p>
-            </div>
-
-            <div class="gear-display">
-                <div class="display-gear gear-big">
-                    <div class="gear-tooth"></div>
-                    <div class="gear-tooth"></div>
-                    <div class="gear-tooth"></div>
-                    <div class="gear-tooth"></div>
-                    <div class="gear-tooth"></div>
-                    <div class="gear-tooth"></div>
-                    <div class="gear-tooth"></div>
-                    <div class="gear-tooth"></div>
-                    <div class="gear-center"></div>
-                </div>
-                <div class="display-gear gear-medium">
-                    <div class="gear-tooth"></div>
-                    <div class="gear-tooth"></div>
-                    <div class="gear-tooth"></div>
-                    <div class="gear-tooth"></div>
-                    <div class="gear-tooth"></div>
-                    <div class="gear-tooth"></div>
-                    <div class="gear-center"></div>
-                </div>
-                <div class="display-gear gear-small">
-                    <div class="gear-tooth"></div>
-                    <div class="gear-tooth"></div>
-                    <div class="gear-tooth"></div>
-                    <div class="gear-tooth"></div>
-                    <div class="gear-center"></div>
-                </div>
-            </div>
-
-            <div class="image-container reveal">
-                <img src="https://images.unsplash.com/photo-1495364141860-b0d03eccd065?w=800" alt="Engranajes gigantes de un mecanismo antiguo">
-                <div class="image-caption">Engranajes del tamaño de edificios</div>
-            </div>
-
-            <div class="text-block dramatic">
-                <p>Y entonces... lo vio.</p>
-            </div>
-
-            <div class="revelation-box">
-                <h3 class="revelation-title">EL RELOJ DEVORADOR</h3>
-                <p>Un monstruo de hierro y agujas que late como un corazón.</p>
-                <p>Un gigantesco mecanismo viviente en el centro del mundo.</p>
-            </div>
-
-            <div class="image-container reveal central-image">
-                <img src="https://images.unsplash.com/photo-1495364141860-b0d03eccd065?w=800" alt="Mecanismo de reloj gigante y aterrador">
-                <div class="image-caption">El Reloj Devorador</div>
-            </div>
-
-            <div class="text-block">
-                <p>Cada vez que sus agujas giraban, una pequeña luz salía del reloj y desaparecía en la oscuridad.</p>
-                <p class="emphasis">Cada vez que gira, alguien en el mundo pierde un recuerdo.</p>
-            </div>
-
-            <div class="memory-list">
-                <p class="stolen-title">El reloj devora:</p>
-                <ul>
-                    <li>Recuerdos de infancia</li>
-                    <li>Sueños olvidados</li>
-                    <li>Momentos de felicidad</li>
-                    <li>El amor de las personas</li>
-                    <li>La vida misma</li>
-                </ul>
-            </div>
-
-            <div class="text-block dramatic">
-                <p>De repente, una figura apareció entre las sombras.</p>
-            </div>
-
-            <div class="character-card guardian-card">
-                <h3 class="character-title">EL GUARDIÁN DE LAS HORAS</h3>
-                <p>Una criatura alta hecha de engranajes, relojes y metal oxidado. En lugar de ojos tiene pequeños cristales que giran lentamente como diminutos relojes.</p>
-                <p class="character-note">No habla. Solo observa.</p>
-            </div>
-
-            <div class="interactive-box">
-                <button class="reveal-btn" data-target="guardian-appears">
-                    <span class="btn-icon">👁️</span>
-                    Observar al Guardián
-                </button>
-                <div id="guardian-appears" class="hidden-content">
-                    <p class="guardian-text">El Guardián aparece frente a ella. No intenta detenerla. Solo levanta lentamente una de sus manos... y señala una gran palanca.</p>
-                    
-                    <!-- SVG Guardian Animation -->
-                    <svg class="guardian-svg" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Guardian silhouette -->
-                        <g class="guardian-figure" opacity="0.9">
-                            <!-- Body -->
-                            <rect x="150" y="200" width="100" height="250" fill="#2e3445" stroke="#b87333" stroke-width="2" rx="5">
-                                <animate attributeName="opacity" values="0.7;1;0.7" dur="3s" repeatCount="indefinite"/>
-                            </rect>
+                        <div class="text-block mt-4">
+                            <p>Una noche, mientras caminaba entre casas abandonadas, escuchó un sonido diferente a todos los demás.</p>
+                            <p class="emphasis">Un sonido profundo. Antiguo. Hambriento.</p>
                             
-                            <!-- Head -->
-                            <circle cx="200" cy="170" r="40" fill="#2e3445" stroke="#b87333" stroke-width="2">
-                                <animate attributeName="opacity" values="0.7;1;0.7" dur="3s" repeatCount="indefinite"/>
-                            </circle>
+                            <div class="tick-tock text-center my-4">
+                                <p>tic…</p>
+                                <p>tac…</p>
+                                <p>tic…</p>
+                                <p>tac…</p>
+                            </div>
                             
-                            <!-- Clock eyes -->
-                            <circle cx="185" cy="165" r="8" fill="#e0b34a" opacity="0.8">
-                                <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
-                            </circle>
-                            <circle cx="215" cy="165" r="8" fill="#e0b34a" opacity="0.8">
-                                <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" begin="0.5s"/>
-                            </circle>
-                            
-                            <!-- Clock hands in eyes -->
-                            <line x1="185" y1="165" x2="185" y2="158" stroke="#1f2633" stroke-width="1.5">
-                                <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 185 165" to="360 185 165" dur="4s" repeatCount="indefinite"/>
-                            </line>
-                            <line x1="215" y1="165" x2="215" y2="158" stroke="#1f2633" stroke-width="1.5">
-                                <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="360 215 165" to="0 215 165" dur="4s" repeatCount="indefinite"/>
-                            </line>
-                            
-                            <!-- Gear details on body -->
-                            <circle cx="200" cy="280" r="25" fill="none" stroke="#b87333" stroke-width="2" opacity="0.6"/>
-                            <circle cx="200" cy="350" r="20" fill="none" stroke="#e0b34a" stroke-width="2" opacity="0.6"/>
-                            
-                            <!-- Arm pointing -->
-                            <line x1="250" y1="250" x2="320" y2="300" stroke="#b87333" stroke-width="8" stroke-linecap="round">
-                                <animate attributeName="x2" values="280;320;280" dur="4s" repeatCount="indefinite"/>
-                                <animate attributeName="y2" values="280;300;280" dur="4s" repeatCount="indefinite"/>
-                            </line>
-                            
-                            <!-- Hand/pointer -->
-                            <circle cx="320" cy="300" r="12" fill="#e0b34a">
-                                <animate attributeName="cx" values="280;320;280" dur="4s" repeatCount="indefinite"/>
-                                <animate attributeName="cy" values="280;300;280" dur="4s" repeatCount="indefinite"/>
-                                <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
-                            </circle>
-                        </g>
-                        
-                        <!-- Mystical particles around guardian -->
-                        <circle cx="100" cy="200" r="3" fill="#e0b34a" opacity="0.5">
-                            <animate attributeName="cy" values="200;150;200" dur="3s" repeatCount="indefinite"/>
-                            <animate attributeName="opacity" values="0;0.8;0" dur="3s" repeatCount="indefinite"/>
-                        </circle>
-                        <circle cx="300" cy="250" r="3" fill="#e0b34a" opacity="0.5">
-                            <animate attributeName="cy" values="250;200;250" dur="4s" repeatCount="indefinite"/>
-                            <animate attributeName="opacity" values="0;0.8;0" dur="4s" repeatCount="indefinite"/>
-                        </circle>
-                        <circle cx="150" cy="350" r="3" fill="#b87333" opacity="0.5">
-                            <animate attributeName="cy" values="350;300;350" dur="3.5s" repeatCount="indefinite"/>
-                            <animate attributeName="opacity" values="0;0.8;0" dur="3.5s" repeatCount="indefinite"/>
-                        </circle>
-                    </svg>
-                    
-                    <audio autoplay loop class="story-audio" preload="auto">
-                        <source src="https://assets.mixkit.co/active_storage/sfx/2466/2466-preview.mp3" type="audio/mpeg">
-                    </audio>
-                </div>
-            </div>
+                            <p class="dramatic-text text-center">Algo estaba despertando.</p>
+                        </div>
 
-            <div class="choice-box" id="decisionBox">
-                <p class="choice-text">Ha llegado el momento de decidir. ¿Qué hará Luma?</p>
-                <p class="choice-subtitle">Tu decisión cambiará el destino del mundo y determinará el final de la historia.</p>
-                <div class="dilemma">
-                    <button class="option decision-btn" id="stopClock" data-decision="stop">
-                        <p class="option-title">🛑 Detener el reloj</p>
-                        <p>Liberará el tiempo, pero quizás todo desaparezca.</p>
-                        <p class="option-consequence">Riesgo: El tiempo podría acabarse para siempre</p>
-                    </button>
-                    <button class="option decision-btn" id="keepClock" data-decision="keep">
-                        <p class="option-title">⏰ Dejar el reloj funcionando</p>
-                        <p>El mundo seguirá igual, pero el reloj devorará más momentos.</p>
-                        <p class="option-consequence">Riesgo: El reloj seguirá consumiendo recuerdos</p>
-                    </button>
-                </div>
-                <div id="decisionMade" class="decision-result" style="display: none;">
-                    <p class="decision-text">Has decidido: <span id="decisionChoice"></span></p>
-                    <button class="reveal-btn" id="changeDecision">
-                        <span class="btn-icon">🔄</span>
-                        Cambiar decisión
-                    </button>
-                </div>
-            </div>
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <div class="image-container reveal">
+                                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1200" 
+                                         class="img-fluid rounded" 
+                                         alt="Niña con linterna en la oscuridad">
+                                    <div class="image-caption">Luma y su linterna en la oscuridad eterna</div>
+                                </div>
+                            </div>
+                        </div>
 
-            <div class="interactive-box revelation">
-                <button class="reveal-btn dramatic" data-target="clock-secret">
-                    <span class="btn-icon">🔓</span>
-                    Revelar el secreto del reloj
-                </button>
-                <div id="clock-secret" class="hidden-content">
-                    <div class="secret-revealed">
-                        <p class="secret-title">LA VERDAD DEL MUNDO</p>
-                        <p>El reloj no fue creado para medir el tiempo.</p>
-                        <p>Fue creado para <em>contenerlo</em>.</p>
-                        <p>Hace mucho tiempo, el tiempo era salvaje. Libre. Caótico.</p>
-                        <p>Las personas morían y revivían. Los días se repetían. El futuro y el pasado eran lo mismo.</p>
-                        <p class="final-secret">Alguien construyó el reloj para atraparlo. Para controlarlo. Para devorarlo lentamente.</p>
-                        <p class="warning">Pero ahora... el reloj tiene hambre de más.</p>
-                    </div>
+                        <div class="navigation-buttons mt-5">
+                            <div class="row">
+                                <div class="col-6">
+                                    <button class="btn btn-prev w-100" data-prev="cap1">
+                                        <i class="bi bi-arrow-left"></i> Anterior
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <button class="btn btn-next w-100" data-next="cap3">
+                                        Continuar <i class="bi bi-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </div>
-        </article>
+        </div>
     </section>
 
-    <!-- Sección: Desenlace -->
-    <section id="desenlace" class="story-section">
-        <article class="story-content">
-            <h2 class="chapter-title">El Último Segundo</h2>
-            
-            <div class="text-block">
-                <p>Luma se acerca a la palanca. Sus manos tiemblan.</p>
-                <p>El Guardián de las Horas no intenta detenerla.</p>
-                <p class="emphasis">Solo observa.</p>
-            </div>
+    <!-- CAPÍTULO 3: La Torre -->
+    <section id="cap3" class="story-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <article class="story-content">
+                        <h2 class="chapter-title">
+                            <span class="chapter-number">Capítulo III</span>
+                            La Torre del Tiempo
+                        </h2>
 
-            <div class="text-block">
-                <p>El reloj late como un corazón gigantesco.</p>
-                <div class="tick-tock slow">
-                    <p>tic…</p>
-                    <p>tac…</p>
-                    <p>tic…</p>
+                        <div class="text-block">
+                            <p class="lead">El sonido la guió hasta una entrada oculta.</p>
+                            <p>Una escalera descendía hacia las profundidades, más allá de lo que su linterna podía iluminar. Las paredes de piedra antigua estaban cubiertas de símbolos extraños que parecían moverse con la luz.</p>
+                            <p class="emphasis">Con cada paso, el sonido del reloj se hacía más fuerte.</p>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <svg class="tower-svg w-100" viewBox="0 0 600 800" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#0a0a0f;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#1a1a2e;stop-opacity:1" />
+                                        </linearGradient>
+                                        <radialGradient id="fogGradient" cx="50%" cy="50%">
+                                            <stop offset="0%" style="stop-color:#2e3445;stop-opacity:0.3" />
+                                            <stop offset="100%" style="stop-color:#0f0f14;stop-opacity:0" />
+                                        </radialGradient>
+                                        <filter id="glow">
+                                            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                                            <feMerge>
+                                                <feMergeNode in="coloredBlur"/>
+                                                <feMergeNode in="SourceGraphic"/>
+                                            </feMerge>
+                                        </filter>
+                                    </defs>
+                                    
+                                    <rect width="600" height="800" fill="url(#skyGradient)"/>
+                                    
+                                    <circle cx="480" cy="120" r="50" fill="#e0b34a" opacity="0.6">
+                                        <animate attributeName="opacity" values="0.5;0.7;0.5" dur="4s" repeatCount="indefinite"/>
+                                    </circle>
+                                    
+                                    <ellipse cx="200" cy="700" rx="150" ry="80" fill="url(#fogGradient)">
+                                        <animate attributeName="cx" values="200;250;200" dur="8s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.3;0.6;0.3" dur="8s" repeatCount="indefinite"/>
+                                    </ellipse>
+                                    
+                                    <g class="tower-structure">
+                                        <path d="M 200 750 L 180 600 L 420 600 L 400 750 Z" 
+                                              fill="#2e3445" stroke="#b87333" stroke-width="3"/>
+                                        <path d="M 180 600 L 170 400 L 430 400 L 420 600 Z" 
+                                              fill="#1f2633" stroke="#b87333" stroke-width="3"/>
+                                        <path d="M 170 400 L 160 200 L 440 200 L 430 400 Z" 
+                                              fill="#2e3445" stroke="#b87333" stroke-width="3"/>
+                                        <path d="M 160 200 L 300 50 L 440 200 Z" 
+                                              fill="#1a1a2e" stroke="#e0b34a" stroke-width="4"/>
+                                        <path d="M 280 50 L 300 10 L 320 50 Z" 
+                                              fill="#e0b34a" stroke="#e0b34a" stroke-width="2" filter="url(#glow)"/>
+                                        
+                                        <rect x="230" y="500" width="40" height="60" fill="#e0b34a" opacity="0.7" rx="5">
+                                            <animate attributeName="opacity" values="0.5;0.9;0.5" dur="3s" repeatCount="indefinite"/>
+                                        </rect>
+                                        <rect x="330" y="500" width="40" height="60" fill="#e0b34a" opacity="0.7" rx="5">
+                                            <animate attributeName="opacity" values="0.5;0.9;0.5" dur="3s" repeatCount="indefinite" begin="1s"/>
+                                        </rect>
+                                        
+                                        <rect x="260" y="680" width="80" height="70" fill="#0a0a0f" stroke="#e0b34a" stroke-width="3" rx="5"/>
+                                        <circle cx="300" cy="715" r="5" fill="#e0b34a" filter="url(#glow)">
+                                            <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+                                        </circle>
+                                    </g>
+                                    
+                                    <text x="300" y="780" text-anchor="middle" font-family="Cinzel" font-size="16" fill="#e0b34a" opacity="0.7">
+                                        La torre que guarda el secreto del tiempo
+                                    </text>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="text-block mt-4">
+                            <p>Al final de la escalera, encontró una puerta de metal con un reloj gigante grabado en su superficie. Sus agujas giraban lentamente, marcando horas que no existían.</p>
+                            <p>Luma extendió su mano y tocó el metal frío.</p>
+                        </div>
+
+                        <div class="interactive-box mt-4">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <button class="btn btn-reveal btn-lg" data-bs-toggle="collapse" data-bs-target="#enterTower">
+                                        <i class="bi bi-door-open"></i> Abrir la puerta
+                                    </button>
+                                    <div class="collapse mt-3" id="enterTower">
+                                        <div class="alert alert-dark">
+                                            <p class="atmospheric-text">La puerta se abre con un gemido metálico. La oscuridad te envuelve. El aire se vuelve más denso...</p>
+                                            <p class="text-center mt-3">
+                                                <strong>No hay vuelta atrás.</strong>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="navigation-buttons mt-5">
+                            <div class="row">
+                                <div class="col-6">
+                                    <button class="btn btn-prev w-100" data-prev="cap2">
+                                        <i class="bi bi-arrow-left"></i> Anterior
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <button class="btn btn-next w-100" data-next="cap4">
+                                        Continuar <i class="bi bi-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="interactive-box climax">
-                <div class="css-lever-container">
-                    <div class="lever-base"></div>
-                    <div class="lever-arm" id="leverArm">
-                        <div class="lever-handle"></div>
-                    </div>
-                    <p class="lever-instruction">Haz clic en la palanca para bajarla</p>
-                </div>
-                <button class="reveal-btn dramatic" data-target="pull-lever" id="leverButton">
-                    <span class="btn-icon">⚡</span>
-                    Bajar la palanca
-                </button>
-                <div id="pull-lever" class="hidden-content">
-                    <div class="climax-animation">
-                        <p class="shake-text">Luma toma la palanca con ambas manos.</p>
-                        <p class="shake-text">La baja.</p>
-                        
-                        <!-- SVG Breaking Clock Animation -->
-                        <svg class="breaking-clock-svg" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Main clock circle -->
-                            <circle cx="300" cy="200" r="120" fill="none" stroke="#e0b34a" stroke-width="6">
-                                <animate attributeName="r" values="120;130;120" dur="0.5s" repeatCount="5"/>
-                                <animate attributeName="opacity" values="1;0.3;1" dur="0.5s" repeatCount="5"/>
-                            </circle>
-                            
-                            <!-- Inner circle -->
-                            <circle cx="300" cy="200" r="80" fill="none" stroke="#b87333" stroke-width="4">
-                                <animate attributeName="r" values="80;85;80" dur="0.5s" repeatCount="5"/>
-                            </circle>
-                            
-                            <!-- Clock center -->
-                            <circle cx="300" cy="200" r="15" fill="#e0b34a">
-                                <animate attributeName="r" values="15;20;15" dur="0.5s" repeatCount="5"/>
-                            </circle>
-                            
-                            <!-- Clock hands spinning wildly -->
-                            <line x1="300" y1="200" x2="300" y2="120" stroke="#e0b34a" stroke-width="6" stroke-linecap="round">
-                                <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 300 200" to="720 300 200" dur="2s" repeatCount="indefinite"/>
-                            </line>
-                            <line x1="300" y1="200" x2="300" y2="100" stroke="#ff6b6b" stroke-width="4" stroke-linecap="round">
-                                <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 300 200" to="1440 300 200" dur="1s" repeatCount="indefinite"/>
-                            </line>
-                            
-                            <!-- Cracks appearing -->
-                            <line x1="250" y1="150" x2="200" y2="100" stroke="#ff6b6b" stroke-width="3" opacity="0">
-                                <animate attributeName="opacity" values="0;1" begin="3s" dur="0.5s" fill="freeze"/>
-                            </line>
-                            <line x1="350" y1="150" x2="400" y2="100" stroke="#ff6b6b" stroke-width="3" opacity="0">
-                                <animate attributeName="opacity" values="0;1" begin="3.2s" dur="0.5s" fill="freeze"/>
-                            </line>
-                            <line x1="280" y1="250" x2="230" y2="300" stroke="#ff6b6b" stroke-width="3" opacity="0">
-                                <animate attributeName="opacity" values="0;1" begin="3.4s" dur="0.5s" fill="freeze"/>
-                            </line>
-                            <line x1="320" y1="250" x2="370" y2="300" stroke="#ff6b6b" stroke-width="3" opacity="0">
-                                <animate attributeName="opacity" values="0;1" begin="3.6s" dur="0.5s" fill="freeze"/>
-                            </line>
-                            
-                            <!-- Breaking pieces flying outward -->
-                            <path d="M 300 120 L 310 110 L 320 120 Z" fill="#e0b34a" opacity="0">
-                                <animate attributeName="opacity" values="0;1;1;0" begin="4s" dur="1s" fill="freeze"/>
-                                <animateTransform attributeName="transform" attributeType="XML" type="translate" from="0,0" to="50,-100" begin="4s" dur="1s" fill="freeze"/>
-                            </path>
-                            <path d="M 380 200 L 390 190 L 390 210 Z" fill="#b87333" opacity="0">
-                                <animate attributeName="opacity" values="0;1;1;0" begin="4.2s" dur="1s" fill="freeze"/>
-                                <animateTransform attributeName="transform" attributeType="XML" type="translate" from="0,0" to="100,50" begin="4.2s" dur="1s" fill="freeze"/>
-                            </path>
-                            <path d="M 220 200 L 210 190 L 210 210 Z" fill="#b87333" opacity="0">
-                                <animate attributeName="opacity" values="0;1;1;0" begin="4.4s" dur="1s" fill="freeze"/>
-                                <animateTransform attributeName="transform" attributeType="XML" type="translate" from="0,0" to="-100,50" begin="4.4s" dur="1s" fill="freeze"/>
-                            </path>
-                            
-                            <!-- Energy burst -->
-                            <circle cx="300" cy="200" r="10" fill="#4a9eff" opacity="0">
-                                <animate attributeName="r" values="10;150" begin="5s" dur="1s" fill="freeze"/>
-                                <animate attributeName="opacity" values="0.8;0" begin="5s" dur="1s" fill="freeze"/>
-                            </circle>
-                            
-                            <!-- Text -->
-                            <text x="300" y="380" text-anchor="middle" font-family="Cinzel" font-size="24" fill="#e0b34a" opacity="0">
-                                TODO SE DETIENE
-                                <animate attributeName="opacity" values="0;1" begin="6s" dur="1s" fill="freeze"/>
-                            </text>
-                        </svg>
-                        
-                        <!-- Audio dramático -->
-                        <audio autoplay class="story-audio" preload="auto">
-                            <source src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3" type="audio/mpeg">
-                        </audio>
-                    </div>
-                </div>
-            </div>
+    <!-- CAPÍTULO 4: El Corazón del Tiempo -->
+    <section id="cap4" class="story-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <article class="story-content">
+                        <h2 class="chapter-title">
+                            <span class="chapter-number">Capítulo IV</span>
+                            El Corazón del Tiempo
+                        </h2>
 
-            <div class="text-block dramatic">
-                <p>Por un instante, nada ocurre.</p>
-                <p>Luego...</p>
-                <p class="emphasis">El reloj comienza a romperse.</p>
-            </div>
+                        <div class="text-block">
+                            <p class="lead">Dentro de la torre no había escaleras normales.</p>
+                            <p>Enormes engranajes giraban lentamente, moviendo plataformas de metal que descendían hacia la oscuridad. Las paredes estaban cubiertas de relojes rotos. Algunos detenidos. Otros girando demasiado rápido.</p>
+                        </div>
 
-            <div class="text-block">
-                <p>Las agujas giran más rápido… más rápido…</p>
-                <p>Los engranajes chirrían. El metal se quiebra.</p>
-                <p class="tick-tock fast">TICTACTICTACTICTAC</p>
-                <p>Hasta que finalmente...</p>
-            </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="image-container reveal">
+                                    <img src="https://images.unsplash.com/photo-1495364141860-b0d03eccd065?w=1200" 
+                                         class="img-fluid rounded" 
+                                         alt="Engranajes gigantes">
+                                    <div class="image-caption">Engranajes del tamaño de edificios</div>
+                                </div>
+                            </div>
+                        </div>
 
-            <div class="silence-moment">
-                <p class="silence-text">se detienen.</p>
-            </div>
+                        <div class="text-block mt-4">
+                            <p class="emphasis">Y entonces... lo vio.</p>
+                        </div>
 
-            <div class="text-block">
-                <p>Por un segundo, todo queda en silencio.</p>
-                <p class="emphasis">Silencio absoluto.</p>
-                <p>Los engranajes dejan de moverse. Las agujas se quiebran y caen al suelo.</p>
-                <p class="dramatic-revelation">El Reloj Devorador ha muerto.</p>
-            </div>
+                        <div class="revelation-box mt-4 mb-4">
+                            <div class="card border-warning">
+                                <div class="card-body text-center">
+                                    <h3 class="revelation-title">EL RELOJ DEVORADOR</h3>
+                                    <p class="lead">Un monstruo de hierro y agujas que late como un corazón.</p>
+                                    <p>Un gigantesco mecanismo viviente en el centro del mundo.</p>
+                                    <hr>
+                                    <p class="small mb-0">Cada vez que sus agujas giran, alguien en el mundo pierde un recuerdo.</p>
+                                </div>
+                            </div>
+                        </div>
 
-            <div class="text-block">
-                <p>Luego...</p>
-            </div>
+                        <div class="memory-list mt-4">
+                            <div class="card border-danger">
+                                <div class="card-header bg-danger bg-opacity-25 border-danger">
+                                    <h5 class="mb-0 fw-bold">
+                                        <i class="bi bi-hourglass-split"></i> El reloj devora:
+                                    </h5>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item bg-dark text-light border-secondary">
+                                        <i class="bi bi-x-circle text-danger fs-5"></i> 
+                                        <strong>Recuerdos de infancia</strong>
+                                    </li>
+                                    <li class="list-group-item bg-dark text-light border-secondary">
+                                        <i class="bi bi-x-circle text-danger fs-5"></i> 
+                                        <strong>Sueños olvidados</strong>
+                                    </li>
+                                    <li class="list-group-item bg-dark text-light border-secondary">
+                                        <i class="bi bi-x-circle text-danger fs-5"></i> 
+                                        <strong>Momentos de felicidad</strong>
+                                    </li>
+                                    <li class="list-group-item bg-dark text-light border-secondary">
+                                        <i class="bi bi-x-circle text-danger fs-5"></i> 
+                                        <strong>El amor de las personas</strong>
+                                    </li>
+                                    <li class="list-group-item bg-dark text-light border-secondary">
+                                        <i class="bi bi-x-circle text-danger fs-5"></i> 
+                                        <strong class="text-warning">La vida misma</strong>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
 
-            <!-- FINAL 1: Deteniendo el reloj -->
-            <div id="ending-stop" class="ending-variant">
-                <div class="rebirth-section">
-                    <p class="rebirth-intro">El tiempo vuelve a fluir.</p>
-                    <ul class="rebirth-list">
-                        <li class="fade-in-item">El viento comienza a soplar.</li>
-                        <li class="fade-in-item">Las hojas vuelven a caer.</li>
-                        <li class="fade-in-item">Las personas pueden volver a vivir.</li>
-                    </ul>
-                </div>
+                        <div class="text-block mt-4">
+                            <p class="dramatic-text text-center">De repente, una figura apareció entre las sombras.</p>
+                        </div>
 
-                <div class="image-container reveal">
-                    <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800" alt="Naturaleza renaciendo con luz">
-                    <div class="image-caption">El mundo comienza a vivir de nuevo</div>
-                </div>
+                        <div class="row mt-4">
+                            <div class="col-md-12">
+                                <div class="character-card guardian-card">
+                                    <div class="card-body">
+                                        <h3 class="character-title text-center">
+                                            <i class="bi bi-eye"></i> EL GUARDIÁN DE LAS HORAS
+                                        </h3>
+                                        <p class="text-center">Una criatura alta hecha de engranajes, relojes y metal oxidado. En lugar de ojos tiene pequeños cristales que giran lentamente como diminutos relojes.</p>
+                                        <p class="character-note text-center"><em>No habla. Solo observa.</em></p>
+                                        
+                                        <div class="text-center mt-3">
+                                            <button class="btn btn-reveal" data-bs-toggle="collapse" data-bs-target="#guardianAppears">
+                                                <i class="bi bi-eye-fill"></i> Observar al Guardián
+                                            </button>
+                                            <div class="collapse mt-3" id="guardianAppears">
+                                                <div class="alert alert-secondary">
+                                                    <p class="guardian-text">El Guardián aparece frente a ella. No intenta detenerla. Solo levanta lentamente una de sus manos... y señala una gran palanca.</p>
+                                                    <p class="text-center mb-0"><strong>La elección está cerca.</strong></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                <div class="revelation-box time-free">
-                    <p class="emphasis">El reloj ya no existe.</p>
-                    <p>Ahora el tiempo vive en todas partes.</p>
-                    <ul class="time-places">
-                        <li>En el viento.</li>
-                        <li>En las personas.</li>
-                        <li>En cada historia.</li>
-                    </ul>
-                    <p class="final-truth">El tiempo está libre.</p>
-                </div>
-
-                <div class="text-block final-paragraph">
-                    <p>Cuando el Guardián de las Horas mira a su alrededor, Luma ya no está allí.</p>
-                    <p>Solo queda su pequeña linterna en el suelo, iluminando débilmente la sala vacía.</p>
-                </div>
-
-                <div class="image-container reveal final-image">
-                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800" alt="Linterna solitaria brillando en la oscuridad">
-                    <div class="image-caption">La linterna de Luma, aún encendida</div>
-                </div>
-
-                <div class="text-block epilogue">
-                    <p class="mystery-text">Y Luma desaparece…</p>
-                    <p class="mystery-text">Como si siempre hubiera sido parte del tiempo.</p>
-                </div>
-
-                <div class="final-message-box">
-                    <p class="final-line">Por primera vez en mucho tiempo, el mundo vuelve a escuchar algo simple y natural:</p>
-                    <p class="final-revelation">El sonido de un nuevo momento comenzando.</p>
-                </div>
-
-                <div class="interactive-box">
-                    <button class="reveal-btn" data-target="new-beginning-stop">
-                        <span class="btn-icon">🎵</span>
-                        Escuchar el nuevo comienzo
-                    </button>
-                    <div id="new-beginning-stop" class="hidden-content">
-                        <audio autoplay class="story-audio" preload="auto">
-                            <source src="https://assets.mixkit.co/active_storage/sfx/2462/2462-preview.mp3" type="audio/mpeg">
-                        </audio>
-                        <p class="ending-message">FIN - FINAL DE LA LIBERTAD</p>
-                        <p class="reflection">El tiempo ahora te pertenece. Úsalo bien.</p>
-                    </div>
+                        <div class="navigation-buttons mt-5">
+                            <div class="row">
+                                <div class="col-6">
+                                    <button class="btn btn-prev w-100" data-prev="cap3">
+                                        <i class="bi bi-arrow-left"></i> Anterior
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <button class="btn btn-next w-100" data-next="cap5">
+                                        Continuar <i class="bi bi-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- FINAL 2: Manteniendo el reloj -->
-            <div id="ending-keep" class="ending-variant" style="display: none;">
-                <div class="dark-ending-section">
-                    <p class="dark-intro">El reloj sigue latiendo.</p>
-                    <ul class="dark-list">
-                        <li class="fade-in-item">El mundo permanece congelado.</li>
-                        <li class="fade-in-item">Los recuerdos siguen desvaneciéndose.</li>
-                        <li class="fade-in-item">Pero al menos... todo existe.</li>
-                    </ul>
-                </div>
+    <!-- CAPÍTULO 5: La Decisión -->
+    <section id="cap5" class="story-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <article class="story-content">
+                        <h2 class="chapter-title">
+                            <span class="chapter-number">Capítulo V</span>
+                            La Decisión
+                        </h2>
 
-                <div class="image-container reveal">
-                    <img src="https://images.unsplash.com/photo-1501630834273-4b5604d2ee31?w=800" alt="Ciudad en penumbra">
-                    <div class="image-caption">El mundo sigue atrapado en el tiempo</div>
-                </div>
+                        <div class="text-block">
+                            <p class="lead">Antes de decidir, Luma necesita conocer la verdad.</p>
+                        </div>
 
-                <div class="revelation-box time-trapped">
-                    <p class="emphasis">El reloj sigue vivo.</p>
-                    <p>El tiempo permanece atrapado.</p>
-                    <ul class="time-places">
-                        <li>En la máquina.</li>
-                        <li>En el metal.</li>
-                        <li>En los engranajes eternos.</li>
-                    </ul>
-                    <p class="final-truth-dark">El tiempo está prisionero... pero seguro.</p>
-                </div>
+                        <div class="interactive-box">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">El Secreto del Reloj</h5>
+                                    <button class="btn btn-reveal btn-lg" data-bs-toggle="collapse" data-bs-target="#clockSecret">
+                                        <i class="bi bi-unlock"></i> Revelar la verdad
+                                    </button>
+                                    <div class="collapse mt-3" id="clockSecret">
+                                        <div class="secret-revealed alert alert-warning">
+                                            <h5 class="secret-title">LA VERDAD DEL MUNDO</h5>
+                                            <hr>
+                                            <p>El reloj no fue creado para medir el tiempo.</p>
+                                            <p>Fue creado para <em class="text-warning"><strong>contenerlo</strong></em>.</p>
+                                            <hr>
+                                            <p>Hace mucho tiempo, el tiempo era salvaje. Libre. Caótico.</p>
+                                            <p>Las personas morían y revivían. Los días se repetían. El futuro y el pasado eran lo mismo.</p>
+                                            <hr>
+                                            <p class="final-secret">Alguien construyó el reloj para atraparlo. Para controlarlo. Para devorarlo lentamente.</p>
+                                            <p class="warning text-danger"><strong>Pero ahora... el reloj tiene hambre de más.</strong></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                <div class="text-block final-paragraph">
-                    <p>Luma se aleja de la palanca. El Guardián asiente lentamente.</p>
-                    <p>Algunos secretos es mejor no revelarlos. Algunas jaulas son necesarias.</p>
-                </div>
+                        <div class="choice-box mt-5" id="decisionBox">
+                            <div class="card">
+                                <div class="card-header text-center">
+                                    <h4 class="choice-text mb-0">
+                                        <i class="bi bi-exclamation-triangle"></i> Ha llegado el momento de decidir
+                                    </h4>
+                                    <p class="choice-subtitle mt-2 mb-0">Tu decisión cambiará el destino del mundo</p>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row dilemma" id="dilemmaOptions">
+                                        <div class="col-md-6 mb-3">
+                                            <button class="option decision-btn w-100 h-100" id="stopClock" data-decision="stop">
+                                                <div class="card h-100">
+                                                    <div class="card-body">
+                                                        <h5 class="option-title">
+                                                            <i class="bi bi-stop-circle"></i> Detener el reloj
+                                                        </h5>
+                                                        <p>Liberará el tiempo, pero quizás todo desaparezca.</p>
+                                                        <hr>
+                                                        <p class="option-consequence">
+                                                            <i class="bi bi-exclamation-circle"></i> 
+                                                            <small>Riesgo: El tiempo podría acabarse para siempre</small>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </button>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <button class="option decision-btn w-100 h-100" id="keepClock" data-decision="keep">
+                                                <div class="card h-100">
+                                                    <div class="card-body">
+                                                        <h5 class="option-title">
+                                                            <i class="bi bi-clock"></i> Mantener el reloj
+                                                        </h5>
+                                                        <p>El mundo seguirá igual, pero el reloj devorará más momentos.</p>
+                                                        <hr>
+                                                        <p class="option-consequence">
+                                                            <i class="bi bi-exclamation-circle"></i> 
+                                                            <small>Riesgo: El reloj seguirá consumiendo recuerdos</small>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div id="decisionMade" class="decision-result text-center" style="display: none;">
+                                        <div class="alert alert-success">
+                                            <h5 class="decision-text">
+                                                Has decidido: <span id="decisionChoice" class="fw-bold"></span>
+                                            </h5>
+                                            <button class="btn btn-warning mt-2" id="changeDecision">
+                                                <i class="bi bi-arrow-counterclockwise"></i> Cambiar decisión
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                <div class="image-container reveal final-image">
-                    <img src="https://images.unsplash.com/photo-1509048191080-d2984bad6ae5?w=800" alt="Reloj antiguo">
-                    <div class="image-caption">El reloj continúa su danza eterna</div>
-                </div>
-
-                <div class="text-block epilogue">
-                    <p class="mystery-text">Luma sale de la torre...</p>
-                    <p class="mystery-text">Sabiendo que eligió la seguridad sobre la libertad.</p>
-                </div>
-
-                <div class="final-message-box dark-ending">
-                    <p class="final-line">El mundo seguirá igual que siempre:</p>
-                    <p class="final-revelation">El sonido del reloj devorando el tiempo, segundo a segundo.</p>
-                </div>
-
-                <div class="interactive-box">
-                    <button class="reveal-btn" data-target="new-beginning-keep">
-                        <span class="btn-icon">🎵</span>
-                        Escuchar el tic-tac eterno
-                    </button>
-                    <div id="new-beginning-keep" class="hidden-content">
-                        <audio autoplay loop class="story-audio" preload="auto">
-                            <source src="https://assets.mixkit.co/active_storage/sfx/2567/2567-preview.mp3" type="audio/mpeg">
-                        </audio>
-                        <p class="ending-message">FIN - FINAL DEL CONTROL</p>
-                        <p class="reflection dark-reflection">A veces, el control es mejor que el caos.</p>
-                    </div>
+                        <div class="navigation-buttons mt-5">
+                            <div class="row">
+                                <div class="col-6">
+                                    <button class="btn btn-prev w-100" data-prev="cap4">
+                                        <i class="bi bi-arrow-left"></i> Anterior
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <button class="btn btn-next w-100" data-next="cap6" id="toFinalBtn">
+                                        Ver el final <i class="bi bi-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </div>
-        </article>
+        </div>
+    </section>
+
+    <!-- CAPÍTULO 6: El Final -->
+    <section id="cap6" class="story-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <article class="story-content">
+                        <h2 class="chapter-title">
+                            <span class="chapter-number">Capítulo VI</span>
+                            El Último Segundo
+                        </h2>
+
+                        <div class="text-block">
+                            <p>Luma se acerca a la palanca. Sus manos tiemblan.</p>
+                            <p>El Guardián de las Horas no intenta detenerla.</p>
+                            <p class="emphasis">Solo observa.</p>
+                        </div>
+
+                        <!-- FINAL 1: Deteniendo el reloj -->
+                        <div id="ending-stop" class="ending-variant">
+                            <div class="rebirth-section">
+                                <h4 class="rebirth-intro text-center">
+                                    <i class="bi bi-sunrise"></i> El tiempo vuelve a fluir
+                                </h4>
+                                <ul class="list-group mt-4">
+                                    <li class="list-group-item fade-in-item">
+                                        <i class="bi bi-wind"></i> El viento comienza a soplar
+                                    </li>
+                                    <li class="list-group-item fade-in-item">
+                                        <i class="bi bi-tree"></i> Las hojas vuelven a caer
+                                    </li>
+                                    <li class="list-group-item fade-in-item">
+                                        <i class="bi bi-heart-pulse"></i> Las personas pueden volver a vivir
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="row mt-4">
+                                <div class="col-12">
+                                    <div class="image-container reveal">
+                                        <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1200" 
+                                             class="img-fluid rounded" 
+                                             alt="Naturaleza renaciendo">
+                                        <div class="image-caption">El mundo comienza a vivir de nuevo</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="revelation-box time-free mt-4">
+                                <div class="card border-success">
+                                    <div class="card-body text-center">
+                                        <p class="emphasis">El reloj ya no existe.</p>
+                                        <p>Ahora el tiempo vive en todas partes.</p>
+                                        <ul class="list-unstyled time-places">
+                                            <li><i class="bi bi-wind text-success"></i> En el viento</li>
+                                            <li><i class="bi bi-people text-success"></i> En las personas</li>
+                                            <li><i class="bi bi-book text-success"></i> En cada historia</li>
+                                        </ul>
+                                        <p class="final-truth"><strong>El tiempo está libre.</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-block mt-4">
+                                <p>Cuando el Guardián de las Horas mira a su alrededor, Luma ya no está allí.</p>
+                                <p>Solo queda su pequeña linterna en el suelo, iluminando débilmente la sala vacía.</p>
+                                <p class="mystery-text text-center mt-4">
+                                    <em>Y Luma desaparece… Como si siempre hubiera sido parte del tiempo.</em>
+                                </p>
+                            </div>
+
+                            <div class="final-message-box mt-4">
+                                <div class="card bg-success text-white">
+                                    <div class="card-body text-center">
+                                        <p class="final-line">Por primera vez en mucho tiempo, el mundo vuelve a escuchar:</p>
+                                        <h4 class="final-revelation">El sonido de un nuevo momento comenzando.</h4>
+                                        <hr class="bg-white">
+                                        <p class="ending-message mb-2">
+                                            <strong>FIN - FINAL DE LA LIBERTAD</strong>
+                                        </p>
+                                        <p class="reflection mb-0">
+                                            <em>El tiempo ahora te pertenece. Úsalo bien.</em>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FINAL 2: Manteniendo el reloj -->
+                        <div id="ending-keep" class="ending-variant" style="display: none;">
+                            <div class="dark-ending-section">
+                                <h4 class="dark-intro text-center text-danger">
+                                    <i class="bi bi-clock-fill"></i> El reloj sigue latiendo
+                                </h4>
+                                <ul class="list-group mt-4">
+                                    <li class="list-group-item list-group-item-dark fade-in-item">
+                                        <i class="bi bi-snow"></i> El mundo permanece congelado
+                                    </li>
+                                    <li class="list-group-item list-group-item-dark fade-in-item">
+                                        <i class="bi bi-cloud-fog"></i> Los recuerdos siguen desvaneciéndose
+                                    </li>
+                                    <li class="list-group-item list-group-item-dark fade-in-item">
+                                        <i class="bi bi-shield-check"></i> Pero al menos... todo existe
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="row mt-4">
+                                <div class="col-12">
+                                    <div class="image-container reveal">
+                                        <img src="https://images.unsplash.com/photo-1501630834273-4b5604d2ee31?w=1200" 
+                                             class="img-fluid rounded" 
+                                             alt="Ciudad en penumbra">
+                                        <div class="image-caption">El mundo sigue atrapado en el tiempo</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="revelation-box time-trapped mt-4">
+                                <div class="card border-danger">
+                                    <div class="card-body text-center">
+                                        <p class="emphasis text-danger">El reloj sigue vivo.</p>
+                                        <p>El tiempo permanece atrapado.</p>
+                                        <ul class="list-unstyled time-places">
+                                            <li><i class="bi bi-gear text-danger"></i> En la máquina</li>
+                                            <li><i class="bi bi-lock text-danger"></i> En el metal</li>
+                                            <li><i class="bi bi-infinity text-danger"></i> En los engranajes eternos</li>
+                                        </ul>
+                                        <p class="final-truth-dark"><strong>El tiempo está prisionero... pero seguro.</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-block mt-4">
+                                <p>Luma se aleja de la palanca. El Guardián asiente lentamente.</p>
+                                <p>Algunos secretos es mejor no revelarlos. Algunas jaulas son necesarias.</p>
+                                <p class="mystery-text text-center mt-4">
+                                    <em>Luma sale de la torre... Sabiendo que eligió la seguridad sobre la libertad.</em>
+                                </p>
+                            </div>
+
+                            <div class="final-message-box dark-ending mt-4">
+                                <div class="card bg-dark text-white">
+                                    <div class="card-body text-center">
+                                        <p class="final-line">El mundo seguirá igual que siempre:</p>
+                                        <h4 class="final-revelation">El sonido del reloj devorando el tiempo, segundo a segundo.</h4>
+                                        <hr class="bg-secondary">
+                                        <p class="ending-message mb-2">
+                                            <strong>FIN - FINAL DEL CONTROL</strong>
+                                        </p>
+                                        <p class="reflection dark-reflection mb-0">
+                                            <em>A veces, el control es mejor que el caos.</em>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-5">
+                            <button class="btn btn-lg btn-outline-light" onclick="location.reload()">
+                                <i class="bi bi-arrow-counterclockwise"></i> Reiniciar historia
+                            </button>
+                        </div>
+
+                        <div class="navigation-buttons mt-4">
+                            <div class="row">
+                                <div class="col-12">
+                                    <button class="btn btn-prev w-100" data-prev="cap5">
+                                        <i class="bi bi-arrow-left"></i> Volver a la decisión
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Footer -->
     <footer class="main-footer">
-        <p>Una historia sobre el tiempo, la libertad y el valor de cada momento.</p>
-        <p class="credits">Creado para "Narrando una historia con la web" | 2026</p>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p>Una historia sobre el tiempo, la libertad y el valor de cada momento.</p>
+                    <p class="credits">Creado para "Narrando una historia con la web" | 2026</p>
+                    <p class="small text-muted mt-3">
+                        Desarrollado con <i class="bi bi-heart-fill text-danger"></i> usando Bootstrap 5
+                    </p>
+                </div>
+            </div>
+        </div>
     </footer>
 
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Audio Generator -->
+    <script src="audio-generator.js"></script>
+    
+    <!-- Custom JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
